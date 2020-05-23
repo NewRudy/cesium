@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--bootstrap-->
+    <link rel="stylesheet" href="../libs/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../libs/jqueryui/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!--cesium小部件-->
+    <link rel="stylesheet" href="../libs/Cesium-1.64/Build/Cesium/Widgets/widgets.css">
+    <!--沙盒-->
+    <link rel="stylesheet" href="../libs/Cesium-1.64/Apps/Sandcastle/templates/bucket.css">
+    <!-- 标绘相关 -->
+    <link rel="stylesheet" type="text/css" href="../libs/prompt/movePrompt.css">
+    <!--自定义样式-->
+    <link rel="stylesheet" href="../css/main.css">
+    <title>吴天的毕业设计</title>
+</head>
+
+<body>
+    <!--地图容器-->
+    <div id="cesiumContainer">
+    </div>
+    <!--导航条-->
+    <div id="nav">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">毕业设计</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link text-secondary" id="edit-tab" data-toggle="tab" href="#home" role="tab"
+                            aria-controls="edit" aria-selected="true">显示设置</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-secondary" id="load-tab" data-toggle="tab" href="#profile" role="tab"
+                            aria-controls="visible" aria-selected="false">地图编辑</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-secondary" id="section-tab" data-toggle="tab" href="#profile" role="tab"
+                            aria-controls="visible" aria-selected="false">剖面分析</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-secondary" id="line-tab" data-toggle="tab" href="#profile" role="tab"
+                            aria-controls="visible" aria-selected="false">等高线</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-secondary" id="visible-tab" data-toggle="tab" href="#profile" role="tab"
+                            aria-controls="visible" aria-selected="false">通视分析</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-secondary" id="viewshed-tab" data-toggle="tab" href="#contact"
+                            role="tab" aria-controls="viewshed" aria-selected="false">可视域分析</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-secondary" id="add-tab" data-toggle="tab" href="#profile" role="tab"
+                            aria-controls="visible" aria-selected="false">添加模型</a>
+                    </li>
+                </ul>
+        </nav>
+
+    </div>
+    <!--显示设置-->
+    <div id="displaySettingWin1" class="functionWin">
+        <div class="head move">
+            <span class="title">
+                显示设置
+            </span>
+            <span class="close headfun_win">
+                <img class='close_headfun_win' src="../img/close.png" title="关闭" />
+            </span>
+        </div>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <input type="checkbox" value="ces_toolbar" />
+                    </div>
+                    <div class="col-xs-4">工具条</div>
+
+                    <div class="col-xs-2">
+                        <input type="checkbox" value="mapShadows" />
+                    </div>
+                    <div class="col-xs-4">地图阴影</div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <input type="checkbox" value="mousePosition" />
+                    </div>
+                    <div class="col-xs-4">鼠标位置</div>
+                    <div class="col-xs-2">
+                        <input type="checkbox" value="compass" />
+                    </div>
+                    <div class="col-xs-4">罗盘</div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <input type="checkbox" value="navigation-controls" />
+                    </div>
+                    <div class="col-xs-4">导航控件</div>
+                    <div class="col-xs-2">
+                        <input type="checkbox" value="distance-legend" />
+                    </div>
+                    <div class="col-xs-4">比例尺</div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <input type="checkbox" value="time-controls" />
+                    </div>
+                    <div class="col-xs-4">时间轴</div>
+                    <div class="col-xs-2">
+                        <input type="checkbox" value="fullscreen-controls" />
+                    </div>
+                    <div class="col-xs-4">全屏显示</div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <input type="checkbox" value="VRButton" />
+                    </div>
+                    <div class="col-xs-4">开启VR</div>
+                    <div class="col-xs-2">
+                        <input type="checkbox" value="frame-number" />
+                    </div>
+                    <div class="col-xs-4">显示帧数</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--地图编辑-->
+    <div id="edit_map" class="functionWin">
+        <div class="head move">
+            <span class="title">
+                地图编辑
+            </span>
+            <span class="close headfun_win">
+                <img class='edit_close' src="../img/close.png" title="关闭" />
+            </span>
+        </div>
+        <div class="demo-container">
+            <div class="container-fluid">
+                <button id='drawRectangle' class="btn btn-default btn-lg active col-xs-5">
+                    绘制矩形
+                </button>
+                <button id='drawCircle' class="btn btn-default btn-lg active col-xs-5">
+                    绘制圆形
+                </button>
+            </div>
+            <div class="container-fluid">
+                <button id='drawPolygon' class="btn btn-default btn-lg active col-xs-5">
+                    绘制多边形
+                </button>
+                <button id='drawPolyline' class="btn btn-default btn-lg active col-xs-5">
+                    绘制线
+                </button>
+            </div>
+            <div class="container-fluid">
+                <button id='drawBillboard' class="btn btn-default btn-lg active col-xs-5">
+                    添加图片
+                </button>
+                <button id='clearAll' class="btn btn-default btn-lg active col-xs-5">
+                    清空
+                </button>
+            </div>
+        </div>
+    </div>
+    <!--剖面分析-->
+    <div id='section' class="container-fluid">
+        <button id='sectionAnalysis' class="btn btn-default btn-lg active col-xs-5">开始绘制</button>
+        <span class="col-xs-1"></span>
+        <button id='sectionAnalysisEnd' class="btn btn-default btn-lg active col-xs-5">清除分析</button>
+    </div>
+    <div id="mainChart"></div>
+    <!--等高线设置-->
+    <div id="contour" class="functionWin">
+        <div class="head move">
+            <span class="title">
+                等高线效果
+            </span>
+            <span class="close headfun_win">
+                <img class='toolbar_close' src="../img/close.png" title="关闭" />
+            </span>
+        </div>
+        <div class="demo-container">
+            <div class="container-fluid">
+                <div class="col-xs-2">
+                    <input type="radio" name="shadingMaterials" value="none" data-bind="checked: selectedShading">
+                </div>
+                <div class="col-xs-4">地形原貌</div>
+                <div class="col-xs-2">
+                    <input type="radio" name="shadingMaterials" value="elevation" data-bind="checked: selectedShading">
+                </div>
+                <div class="col-xs-4">高度渐变</div>
+            </div>
+            <div class="container-fluid">
+                <div class="col-xs-2">
+                    <input type="radio" name="shadingMaterials" value="slope" data-bind="checked: selectedShading">
+                </div>
+                <div class="col-xs-4">坡度渐变</div>
+                <div class="col-xs-2">
+                    <input type="radio" name="shadingMaterials" value="aspect" data-bind="checked: selectedShading">
+                </div>
+                <div class="col-xs-4">贴图</div>
+            </div>
+        </div>
+        <div class="demo-container">
+            <div class="container-fluid">
+                <div class="col-xs-2">
+                    <input type="checkbox" data-bind="checked: enableContour">
+                </div>
+                <div class="col-xs-4">等高线</div>
+            </div>
+            <div class="container-fluid">
+                <div class="col-xs-3">
+                    间距
+                </div>
+                <div class="col-xs-6">
+                    <input style="width: 136px" type="range" min="1.0" max="500.0" step="1.0"
+                        data-bind="value: contourSpacing, valueUpdate: 'input', enable: enableContour"> <span
+                        data-bind="text: contourSpacing"></span>
+                </div>
+                <div class="col-xs-2">
+                    m
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="col-xs-3">
+                    线宽
+                </div>
+                <div class="col-xs-6">
+                    <input style="width: 125px" type="range" min="1.0" max="10.0" step="1.0"
+                        data-bind="value: contourWidth, valueUpdate: 'input', enable: enableContour"> <span
+                        data-bind="text: contourWidth"></span>
+                </div>
+                <div class="col-xs-2">
+                    px
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="col-xs-6">
+                    <button type="button" data-bind="click: changeColor, enable: enableContour"
+                        style="color: black;">颜色</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--通视分析设置-->
+    <div id="entity" class="functionWin">
+        <div class="head move">
+            <span class="title">
+                实体添加
+            </span>
+            <span class="close headfun_win">
+                <img class='entity_close' src="../img/close.png" title="关闭" />
+            </span>
+        </div>
+        <div class="demo-container">
+            <div class="container-fluid">
+                <button id='add_vpoint' class="btn btn-default btn-lg active col-xs-5">
+                    添加视域点
+                </button>
+                <button id='add_gpoint' class="btn btn-default btn-lg active col-xs-5">
+                    添加目标点
+                </button>
+            </div>
+            <div class="container-fluid">
+                <button id='move_entity' class="btn btn-default btn-lg active col-xs-5">
+                    移动实体
+                </button>
+                <button id='visible_analysis' class="btn btn-default btn-lg active col-xs-5">
+                    通视分析
+                </button>
+            </div>
+            <div class="container-fluid">
+                <button id='entity_reset' class="btn btn-default btn-lg active col-xs-5">
+                    清除重置
+                </button>
+            </div>
+        </div>
+    </div>
+    <!--可视域设置-->
+    
+    <div id="viewshed_map" class="functionWin">
+        <div class="head move">
+            <span class="title">
+                可视域设置
+            </span>
+            <span class="close headfun_win">
+                <img class='viewshed_close' src="../img/close.png" title="关闭" />
+            </span>
+        </div>
+        <div class="demo-container">
+            <div class="container-fluid">
+                <button id='addFirstPoint' class="btn btn-default btn-lg active col-xs-5">
+                    添加视点
+                </button>
+                <button id='addSecondPoint' class="btn btn-default btn-lg active col-xs-5">
+                    添加终点
+                </button>
+            </div>
+            <div class="container-fluid">
+                <button id='viewshedAnalysis' class="btn btn-default btn-lg active col-xs-5">
+                    可视域分析
+                </button>
+                <button id='viewshedEnd' class="btn btn-default btn-lg active col-xs-5">
+                    结束分析
+                </button>
+            </div>
+            <div class="container-fluid">
+                <button id='addPanel' class="btn btn-default btn-lg active col-xs-5">
+                    添加面板
+                </button>
+                <button id='viewshedRetset' class="btn btn-default btn-lg active col-xs-5">
+                    清除重置
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- 鼠标位置 -->
+    <div id="mousePosition"></div>
+    <div id="creditContainer"></div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
+    <!--ui 插件-->
+    <script src="../libs/bootstrap/js/bootstrap.js"></script>
+    <script src="http://apps.bdimg.com/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!--cesium插件-->
+    <script src="../libs/Cesium-1.64/Build/Cesium/Cesium.js"></script>
+    <script src="../libs/CesiumExtend/viewerCesiumNavigationMixin.min.js"></script>
+    <script src="../libs/CesiumExtend/CesiumHeatmap.js"></script>
+    <script src="../libs/Cesium-1.64/Apps/Sandcastle/Sandcastle-header.js"></script>
+    <script src="../libs/Cesium-1.64/Apps/Sandcastle/load-cesium-es6.js"></script>
+    <!-- 弹窗 -->
+    <script src="../libs/prompt/movePrompt.js"></script>
+    <!-- 标绘相关 -->
+    <script src="../libs/drawPlot/createPolyline.js"></script>
+    <script src="../libs/drawPlot/createPolygon.js"></script>
+    <script src="../libs/drawPlot/createBillboard.js"></script>
+    <script src="../libs/drawPlot/createRectangle.js"></script>
+    <script src="../libs/drawPlot/createCircle.js"></script>
+    <script src="../libs/drawPlot/drawTool.js"></script>
+    <!--chart-->
+    <script src="https://cdn.bootcss.com/echarts/4.2.1/echarts.js"></script>
+    <!--功能函数文件-->
+    <script src="../js/function.js"></script> //函数功能
+    <script src="../js/layout.js"></script> //布局
+    <script src="../js/eventBind.js"></script> //事件绑定
+    <script src="../js/elevation.js"></script> //等高线
+    <script src="../js/visibleAnalysis.js"></script> //通视分析
+    <script src="../js/editMap.js"></script> //编辑
+    <script src="../js/viewed.js"></script> //可视域分析
+</body>
+
+</html>
