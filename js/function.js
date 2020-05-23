@@ -122,6 +122,8 @@
                 })
             );
         }
+        //选择默认地形
+        viewer.baseLayerPicker.viewModel.selectedImagery= viewer.baseLayerPicker.viewModel.imageryProviderViewModels[6];
         //影像亮度
         if (data.globalImageryBrightness != undefined) {
             img.brightness = data.globalImageryBrightness;
