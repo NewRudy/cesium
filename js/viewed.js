@@ -1,3 +1,5 @@
+viewer.shadows = true;
+viewer.terrainShadows = Cesium.ShadowMode.ENABLED;
 var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cooked, raw) {
     if (Object.defineProperty) {
         Object.defineProperty(cooked, "raw", {
