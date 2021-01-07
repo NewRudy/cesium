@@ -6,7 +6,7 @@
 
 http://blog.sina.com.cn/s/articlelist_5880835006_0_1.html     //初学者跟着敲下来最好
 
-https://xiaozhuanlan.com/gishome-cesium         //gis之家专栏，要42，但是绝对物超所值
+https://xiaozhuanlan.com/gishome-cesium         //gis之家专栏，要42
 
 https://www.wellyyss.cn/            //ysc 大佬
 
